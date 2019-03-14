@@ -20,12 +20,12 @@ class CreateAbsencesTable extends Migration
             $table->bigIncrements('id');
             $table->timestamp('date');
             $table->string('tipe');
-            $table->unsignedBigInteger('student_id');
-            $table->foreign('student_id')->references('id')->on('students');
-            $table->unsignedBigInteger('module_id');
-            $table->foreign('module_id')->references('id')->on('modules');
-            $table->unsignedBigInteger('teacher_id');
-            $table->foreign('teacher_id')->references('id')->on('teachers');
+            //$table->unsignedBigInteger('student_id');
+            //$table->foreign('student_id')->references('id')->on('students');
+            //$table->unsignedBigInteger('module_id');
+            //$table->foreign('module_id')->references('id')->on('modules');
+            //$table->unsignedBigInteger('teacher_id');
+            //$table->foreign('teacher_id')->references('id')->on('teachers');
             $table->timestamps();
         });
     }

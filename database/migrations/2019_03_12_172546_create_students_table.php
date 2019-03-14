@@ -22,12 +22,12 @@ class CreateStudentsTable extends Migration
             $table->string('surname');
             $table->string('age');
             $table->string('profession');
-            $table->unsignedBigInteger('course_id');
-            $table->foreign('course_id')->references('id')->on('courses');
-            $table->unsignedBigInteger('teacher_id');
-            $table->foreign('teacher_id')->references('id')->on('teachers');
-            $table->unsignedBigInteger('module_id');
-            $table->foreign('module_id')->references('id')->on('modules');
+            //$table->unsignedBigInteger('course_id');
+            //$table->foreign('course_id')->references('id')->on('courses');
+            //$table->unsignedBigInteger('teacher_id');
+            //$table->foreign('teacher_id')->references('id')->on('teachers');
+            //$table->unsignedBigInteger('module_id');
+            //$table->foreign('module_id')->references('id')->on('modules');
             $table->timestamps();
         });
     }

@@ -21,10 +21,10 @@ class CreateNotesTable extends Migration
 
             $table->bigIncrements('id');
             $table->string('note');
-            $table->unsignedBigInteger('student_id');
-            $table->foreign('student_id')->references('id')->on('students');
-            $table->unsignedBigInteger('module_id');
-            $table->foreign('module_id')->references('id')->on('modules');
+            //$table->unsignedBigInteger('student_id');
+            //$table->foreign('student_id')->references('id')->on('students');
+            //$table->unsignedBigInteger('module_id');
+            //$table->foreign('module_id')->references('id')->on('modules');
             $table->timestamps();
         });
     }
