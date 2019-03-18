@@ -18,7 +18,7 @@
                        <strong>Session activa</strong>                    
 
                       @endcomponent
-
+                      <h6  class="panel-title">Bienvenido  {{auth()->user()->name}}</h6>
 
                 </div>
 
@@ -30,6 +30,8 @@
                     @endif
 
                     Seja bem-vindo ao menu principal!!!
+
+                    <a href="{{ URL::to('/show_course')}}" class="btn btn-primary float-right ">Course</a>
 
 
                   

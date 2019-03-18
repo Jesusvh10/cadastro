@@ -27,6 +27,7 @@ class CreateAbsencesTable extends Migration
             //$table->unsignedBigInteger('teacher_id');
             //$table->foreign('teacher_id')->references('id')->on('teachers');
             $table->timestamps();
+            $table->softDeletes(); //Columna para soft delete
         });
     }
 

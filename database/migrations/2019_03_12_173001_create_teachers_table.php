@@ -22,8 +22,8 @@ class CreateTeachersTable extends Migration
             $table->string('surname');
             $table->string('age');
             $table->string('profession');
-            
             $table->timestamps();
+            $table->softDeletes(); //Columna para soft delete
         });
     }
 

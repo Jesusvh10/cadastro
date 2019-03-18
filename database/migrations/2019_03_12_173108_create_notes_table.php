@@ -26,6 +26,7 @@ class CreateNotesTable extends Migration
             //$table->unsignedBigInteger('module_id');
             //$table->foreign('module_id')->references('id')->on('modules');
             $table->timestamps();
+            $table->softDeletes(); //Columna para soft delete
         });
     }
 
