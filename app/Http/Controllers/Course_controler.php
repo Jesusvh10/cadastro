@@ -4,6 +4,8 @@ use App\Http\Controllers\Controller;
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Course;
+use App\Http\Requests\Save_Course;
+
 
 
 //use Illuminate\Http\Request;
@@ -35,13 +37,13 @@ public function register_course(){
 	}
 
 
-public function saving_course(Request $request){
+public function saving_course(Save_Course $request){
 
 		$save_course = new Course;
 		$save_course->name = $request->get('name');
 		$save_course->save();
 
-		return redirect('/show_course')->with('masage','Usuario Cadastrado');
+		return redirect('/show_course')->with('success','Usuario Cadastrado com êxito');
 
 
 }
@@ -61,7 +63,7 @@ public function update_course(Request $request, $id){
 		$update_course->name = $request->get('name');
 		$update_course->save();
 
-         return redirect('/show_course')->with('masage','Actualizado com exito');
+         return redirect('/show_course')->with('success','Usuario atualizados com êxito');
 	}
 
 
@@ -69,7 +71,7 @@ public function update_course(Request $request, $id){
 public function delete_course(Request $request, $id){
 		$delete_course = Course::find($id);
 		$delete_course->delete();
-        return redirect('/show_course')->with('masage','Usuario elminado com ID'.":".$id);
+        return redirect('/show_course')->with('deleted','Curso elminado com êxito'.":".$delete_course->name);
 	}
 
 

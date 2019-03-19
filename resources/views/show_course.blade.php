@@ -2,8 +2,19 @@
 
 
 @section('content')
+@if (session('success'))
+      <div class="alert alert-success">
+          {{ session('success') }}
+      </div>
+  @endif
+
+  @if (session('deleted'))
+      <div class="alert alert-danger">
+          {{ session('deleted')}}
+      </div>
+  @endif
 <h4>Cursos cadastrados</h4>
- <a href="{{ url('/home') }}">Home</a>
+ 
 
 
  <table class="table">
@@ -35,6 +46,7 @@
           @endforeach()
         </tbody>
   </table>
+    
     
 
 

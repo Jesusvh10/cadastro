@@ -73,7 +73,9 @@
         </nav>
 
         <main class="py-4">
+             <a href="{{ url('/home') }}">Home</a>
             @yield('content')
+
              
         </main>
     </div>
