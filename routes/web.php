@@ -33,3 +33,12 @@ Route::post('saving_course','Course_controler@saving_course')->name('saving_cour
 
 
 Route::delete('delete_course/{id}','Course_controler@delete_course')->name('delete_course');
+
+//Routes for modules Teachers
+
+Route::get('register_teacher','Teacher_controller@register_teacher')->name('register_teacher');
+
+
+Route::post('saving_teacher','Teacher_controller@saving_teacher')->name('saving_teacher');
+
+

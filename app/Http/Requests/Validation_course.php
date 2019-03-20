@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Save_Course extends FormRequest
+class Validation_course extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,32 +24,19 @@ class Save_Course extends FormRequest
     public function rules()
     {
         return [
-            
+
             'name' => 'required',
-
-
+            
         ];
     }
 
+
     public function messages()
-    {
-      return [
+{
+    return [
         
-        'name.required' => 'Olvidaste o nome do curso'
+        'name.required' => 'O nome do curso é obrigatorio',
         
-      ];
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ];
+}
 }

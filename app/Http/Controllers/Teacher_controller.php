@@ -1,18 +1,18 @@
 <?php
+
 namespace App\Http\Controllers\API\v1\Users;
 use App\Http\Controllers\Controller;
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Course;
-use App\Http\Requests\Validation_course;
+use App\Teacher;
+use App\Http\Requests\Validation_Teacher;
 
 
 
-//use Illuminate\Http\Request;
-
-class Course_controler extends Controller
+class Teacher_controller extends Controller
 {
-	public function __construct(){
+    public function __construct(){
 
 		$this->middleware('auth');
 
@@ -22,28 +22,29 @@ class Course_controler extends Controller
 	private $path ='user';
 
 
-		public function show_course(){
-			    
-				$show_course = Course::all();
-				return view('show_course',compact('show_course'));
-		}
 
 
 
-		public function register_course(){
+
+		public function register_teacher(){
 				//donde yo veo el formulario de cadastro para registrar
-			 	return view('register_course');
+			 	$show_course = Course::all();
+			 	return view('register_teacher',compact('show_course'));
 			 	
 		}
 
 
-		public function saving_course(Validation_course $request){
+		public function saving_teacher(Request $request){
 
-				$save_course = new Course;
-				$save_course->name = $request->get('name');
-				$save_course->save();
+				$saving_teacher = new Teacher;
+				$saving_teacher->name = $request->get('name');
+				$saving_teacher->surname = $request->get('surname');
+				$saving_teacher->age = $request->get('age');
+				$saving_teacher->profession = $request->get('profession');
+				$saving_teacher->course_id = $request->get('category');
+				$saving_teacher->save();
 
-				return redirect('/show_course')->with('success','Usuario Cadastrado com êxito');
+				return redirect('register_teacher')->with('success','Usuario Cadastrado com êxito');
 
 
 		}
@@ -72,7 +73,10 @@ class Course_controler extends Controller
 				$delete_course = Course::find($id);
 				$delete_course->delete();
 		        return redirect('/show_course')->with('deleted','Curso elminado com êxito'.":".$delete_course->name);
+
+
+
 		}
 
 
-}// FIN of the class Course_controller
+} // Fin of the class controller
