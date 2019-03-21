@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Course;
 use App\Teacher;
 use App\Http\Requests\Validation_Teacher;
+use DB;
 
 
 
@@ -23,7 +24,23 @@ class Teacher_controller extends Controller
 
 
 
+		public function show_teacher(){
+			    
+					
+			$query = "teachers.id, teachers.name as namet, teachers.surname, teachers.age, teachers.profession, teachers.course_id, courses.name as curso";
 
+			$teacher = DB::table('teachers')
+			->select(DB::raw($query))
+			->leftJoin('courses', 'courses.id', '=', 'teachers.course_id')
+			->whereNull('teachers.deleted_at')
+			->paginate(5);
+
+
+			return view('show_teacher',compact('teacher'));
+				
+				
+				
+		}
 
 
 		public function register_teacher(){
@@ -44,35 +61,43 @@ class Teacher_controller extends Controller
 				$saving_teacher->course_id = $request->get('category');
 				$saving_teacher->save();
 
-				return redirect('register_teacher')->with('success','Usuario Cadastrado com êxito');
+				return redirect('show_teacher')->with('success','Usuario Cadastrado com êxito');
 
 
 		}
 
 
 
-		public function edit_course(Request $request, $id){
+		public function edit_teacher(Request $request, $id){
 				// para editar los datos sin guardar aun
-				$edit_course = Course::find($id);
-				return view('edit_course',compact('edit_course'));
+				$edit_teacher = Teacher::find($id);
+
+				$show_course = Course::all();
+
+				return view('edit_teacher',compact('edit_teacher','show_course'));
 
 		}
 
 
-		public function update_course(Request $request, $id){
-				$update_course = Course::find($id);
-				$update_course->name = $request->get('name');
-				$update_course->save();
+		public function update_teacher(Request $request, $id){
+				
+				$update_teacher = Teacher::find($id);
+				$update_teacher->name = $request->get('name');
+				$update_teacher->surname = $request->get('surname');
+				$update_teacher->age = $request->get('age');
+				$update_teacher->profession = $request->get('profession');
+				$update_teacher->course_id = $request->get('category');
+				$update_teacher->save();
 
-		         return redirect('/show_course')->with('success','Usuario atualizados com êxito');
+		         return redirect('/show_teacher')->with('success','Usuario atualizado com êxito');
 		}
 
 
 
-		public function delete_course(Request $request, $id){
-				$delete_course = Course::find($id);
-				$delete_course->delete();
-		        return redirect('/show_course')->with('deleted','Curso elminado com êxito'.":".$delete_course->name);
+		public function delete_teacher(Request $request, $id){
+				$delete_teacher = Teacher::find($id);
+				$delete_teacher->delete();
+		        return redirect('/show_teacher')->with('deleted','Curso elminado com êxito'.":".$delete_teacher->name);
 
 
 

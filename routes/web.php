@@ -36,9 +36,17 @@ Route::delete('delete_course/{id}','Course_controler@delete_course')->name('dele
 
 //Routes for modules Teachers
 
+Route::get('show_teacher','Teacher_controller@show_teacher')->name('show_teacher');
+
 Route::get('register_teacher','Teacher_controller@register_teacher')->name('register_teacher');
 
-
 Route::post('saving_teacher','Teacher_controller@saving_teacher')->name('saving_teacher');
+
+Route::get('edit_teacher/{id}','Teacher_controller@edit_teacher')->name('edit_teacher');
+
+Route::put('update_teacher/{id}','Teacher_controller@update_teacher')->name('update_teacher');
+
+Route::delete('delete_teacher/{id}','Teacher_controller@delete_teacher')->name('delete_teacher');
+
 
 

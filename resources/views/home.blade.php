@@ -32,7 +32,7 @@
                     Seja bem-vindo ao menu principal!!!
 
                     <a href="{{ URL::to('/show_course')}}" class="btn btn-primary float-right ">Courses</a>
-                    <a href="{{ URL::to('/register_teacher')}}" class="btn btn-primary float-right ">Teachers</a>
+                    <a href="{{ URL::to('/show_teacher')}}" class="btn btn-primary float-right ">Teachers</a>
 
 
                   
