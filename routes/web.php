@@ -49,4 +49,32 @@ Route::put('update_teacher/{id}','Teacher_controller@update_teacher')->name('upd
 Route::delete('delete_teacher/{id}','Teacher_controller@delete_teacher')->name('delete_teacher');
 
 
+//Routes for modules Students
 
+Route::get('show_student','Student_controller@show_student')->name('show_student');
+
+Route::get('register_student','Student_controller@register_student')->name('register_student');
+
+Route::post('saving_student','Student_controller@saving_student')->name('saving_student');
+
+Route::get('edit_student/{id}','Student_controller@edit_student')->name('edit_student');
+
+Route::put('update_student/{id}','Student_controller@update_student')->name('update_student');
+
+Route::delete('delete_student/{id}','Student_controller@delete_student')->name('delete_student');
+
+
+
+//Routes for module
+
+Route::get('show_module','Mudule_controller@show_module')->name('show_module');
+
+Route::get('register_module','Mudule_controller@register_module')->name('register_module');
+
+Route::post('saving_module','Mudule_controller@saving_module')->name('saving_module');
+
+Route::get('edit_module/{id}','Mudule_controller@edit_module')->name('edit_module');
+
+Route::put('update_module/{id}','Mudule_controller@update_module')->name('update_module');
+
+Route::delete('delete_module/{id}','Mudule_controller@delete_module')->name('delete_module');

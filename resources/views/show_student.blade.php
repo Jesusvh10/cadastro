@@ -13,7 +13,7 @@
           {{ session('deleted')}}
       </div>
   @endif
-<h4>Cadastrados de Professores</h4>
+<h4>Cadastrados de Alunos</h4>
  
 
 
@@ -29,7 +29,7 @@
           <th scope="col">curso_id</th>
           <th>Editar</th> 
           <th>Delete</th>
-          <th> <a href="{{ URL::to('/register_teacher')}}" class="btn btn-primary float-right ">Cadastrar</a>
+          <th> <a href="{{ URL::to('/register_student')}}" class="btn btn-primary float-right ">Cadastrar</a>
           </th>
         </tr>
       </thead>
@@ -45,9 +45,9 @@
               <td>{{$item->curso}}</td>
               <td>{{$item->course_id}}</td>
 
-              <td><a href="{{ URL::to('/edit_teacher',$item->id)}}" class="btn btn-primary">Edit</a></td>         
+              <td><a href="{{ URL::to('/edit_student',$item->id)}}" class="btn btn-primary">Edit</a></td>         
             <td>
-              <form action="{{ URL::to('/delete_teacher',$item->id)}}"method="post">
+              <form action="{{ URL::to('/delete_student',$item->id)}}"method="post">
                  @csrf
                  @method('DELETE')
               <button class="btn btn-danger" type="submit">Delete</button>
