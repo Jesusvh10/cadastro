@@ -13,7 +13,7 @@ class Validation_Teacher extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,33 @@ class Validation_Teacher extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'surname' => 'required',
+            'age' => 'required',
+            'profession' => 'required',
         ];
     }
+
+
+
+    public function messages()
+    {
+        return [
+            
+            'name.required' => 'O nome é obrigatorio',
+
+            'surname.required' => 'O sobrenome é obrigatorio',
+
+            'age.required' => ' Idade é obrigatoria',
+
+            'profession.required' => 'A profissão é obrigatoria',
+            
+        
+
+        ];
+    }
+
+
+
+
 }

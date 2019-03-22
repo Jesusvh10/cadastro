@@ -51,7 +51,7 @@ class Teacher_controller extends Controller
 		}
 
 
-		public function saving_teacher(Request $request){
+		public function saving_teacher(Validation_Teacher $request){
 
 				$saving_teacher = new Teacher;
 				$saving_teacher->name = $request->get('name');

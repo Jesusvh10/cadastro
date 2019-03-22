@@ -43,7 +43,7 @@ class Course_controler extends Controller
 				$save_course->name = $request->get('name');
 				$save_course->save();
 
-				return redirect('/show_course')->with('success','Usuario Cadastrado com êxito');
+				return redirect('/show_course')->with('success','Curso Cadastrado com êxito');
 
 
 		}
@@ -63,7 +63,7 @@ class Course_controler extends Controller
 				$update_course->name = $request->get('name');
 				$update_course->save();
 
-		         return redirect('/show_course')->with('success','Usuario atualizados com êxito');
+		         return redirect('/show_course')->with('success','Curso atualizado com êxito');
 		}
 
 
