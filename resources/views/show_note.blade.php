@@ -13,7 +13,7 @@
           {{ session('deleted')}}
       </div>
   @endif
-<h4>Cadastrados de Alunos</h4>
+<h4>Cadastrados de notas</h4>
  
 
 
@@ -22,26 +22,25 @@
         <tr>
           <th scope="col">#id</th>
           <th scope="col">Nome</th>
-         
-          
-          
           <th scope="col">curso</th>
+          <th scope="col">Nota</th>
          
           <th>Editar</th> 
           <th>Delete</th>
-          <th> <a href="{{ URL::to('/register_module')}}" class="btn btn-primary float-right ">Cadastrar</a>
+          <th> <a href="{{ URL::to('/register_note')}}" class="btn btn-primary float-right ">Cadastrar</a>
           </th>
         </tr>
       </thead>
         <tbody>
          
-          @foreach($teacher as $item)
+          @foreach($note as $item)
            <tr>
               <td>{{$item->id}}</td>
               <td>{{$item->namet}}</td>
+              <td>{{$item->name}}</td>
+              <td>{{$item->note}}</td>
                           
-            
-              <td>{{$item->curso}}</td>
+                     
              
 
               <td><a href="{{ URL::to('/edit_module',$item->id)}}" class="btn btn-primary">Edit</a></td>         
@@ -57,6 +56,6 @@
           @endforeach()
         </tbody>
   </table>
-    {{$teacher->links()}}
+    {{$note->links()}}
     @endsection
     

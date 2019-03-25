@@ -78,3 +78,21 @@ Route::get('edit_module/{id}','Mudule_controller@edit_module')->name('edit_modul
 Route::put('update_module/{id}','Mudule_controller@update_module')->name('update_module');
 
 Route::delete('delete_module/{id}','Mudule_controller@delete_module')->name('delete_module');
+
+
+
+// Routes for notes
+
+
+Route::get('show_note','Note_controller@show_note')->name('show_note');
+
+Route::get('register_note','Note_controller@register_note')->name('register_note');
+
+Route::post('saving_note','Note_controller@saving_note')->name('saving_note');
+
+Route::get('edit_note/{id}','Note_controller@edit_note')->name('edit_note');
+
+Route::put('update_note/{id}','Note_controller@update_note')->name('update_note');
+
+Route::delete('delete_note/{id}','Note_controller@delete_note')->name('delete_note');
+

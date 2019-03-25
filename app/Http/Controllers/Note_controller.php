@@ -4,15 +4,16 @@ namespace App\Http\Controllers\API\v1\Users;
 use App\Http\Controllers\Controller;
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Course;
+use App\Note;
+use App\Module;
 use App\Student;
 use App\Http\Requests\Validation_Student;
 use DB;
 
 
-class Student_controller extends Controller
+class Note_controller extends Controller
 {
-     public function __construct(){
+    public function __construct(){
 
 		$this->middleware('auth');
 
@@ -22,53 +23,52 @@ class Student_controller extends Controller
 	private $path ='user';
 
 
-
-
-	public function show_student(){
+	public function show_note(){
 			    
 					
-			$query = "students.id, students.name as namet, students.surname, students.age, students.profession, students.course_id, courses.name as curso";
+			$query = "notes.id, students.name as namet, modules.name, notes.note ";
 
-			$teacher = DB::table('students')
+			 $note = DB::table('notes')
 			->select(DB::raw($query))
-			->leftJoin('courses', 'courses.id', '=', 'students.course_id')
-			->whereNull('students.deleted_at')
+			->leftJoin('modules', 'modules.id', '=', 'notes.module_id')
+			->leftJoin('students','students.id', '=', 'notes.student_id')
+			->whereNull('notes.deleted_at')
 			->paginate(5);
 
 
-			return view('show_student',compact('teacher'));
+			return view('show_note',compact('note'));
 				
 				
 				
 		}
 
 
-		public function register_student(){
+		public function register_note(){
 				
-			 	 $show_course = Course::all();
-			 	return view('register_student',compact('show_course'));
+				 $show_student = Student::all();
+			 	 $show_module = Module::all();
+			 	
+			 	return view('register_note',compact('show_student','show_module'));
 			 	
 		}
 
 
-		public function saving_student(Validation_Student $request){
+		public function saving_note(Request $request){
 
-				$saving_student = new Student;
-				$saving_student->name = $request->get('name');
-				$saving_student->surname = $request->get('surname');
-				$saving_student->age = $request->get('age');
-				$saving_student->profession = $request->get('profession');
-				$saving_student->course_id = $request->get('category');
-				$saving_student->save();
+				$saving_note = new Note;
+				$saving_note->student_id = $request->get('categoryst');
+				$saving_note->module_id = $request->get('categorymd');
+				$saving_note->note = $request->get('note');
+				$saving_note->save();
 
-				return redirect('show_student')->with('success','Usuario Cadastrado com êxito');
+				return redirect('show_note')->with('success','Nota Cadastrado com êxito');
 
 
 		}
 
 
 
-		public function edit_student(Request $request, $id){
+		public function edit_note(Request $request, $id){
 				// para editar los datos sin guardar aun
 				$edit_student = Student::find($id);
 
@@ -106,4 +106,33 @@ class Student_controller extends Controller
 
 
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}// End of the class

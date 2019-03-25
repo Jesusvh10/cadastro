@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Course;
 use App\Module;
+use App\Http\Requests\Validation_modules;
 use DB;
 
 class Mudule_controller extends Controller
@@ -49,7 +50,7 @@ class Mudule_controller extends Controller
 		}
 
 
-		public function saving_module(Request $request){
+		public function saving_module(Validation_modules $request){
 
 				$saving_module = new Module;
 				$saving_module->name = $request->get('name');
@@ -69,30 +70,28 @@ class Mudule_controller extends Controller
 
 				$show_course = Course::all();
 
-				return view('edit_module',compact('edit_student','show_course'));
+				return view('edit_module',compact('edit_module','show_course'));
 
 		}
 
 
 		public function update_module(Request $request, $id){
 				
-				$update_student = Student::find($id);
-				$update_student->name = $request->get('name');
-				$update_student->surname = $request->get('surname');
-				$update_student->age = $request->get('age');
-				$update_student->profession = $request->get('profession');
-				$update_student->course_id = $request->get('category');
-				$update_student->save();
+				$update_module = Module::find($id);
+				$update_module->name = $request->get('name');
+				$update_module->course_id = $request->get('category');
+				$update_module->save();
 
-		         return redirect('/show_student')->with('success','Usuario atualizado com êxito');
+		         return redirect('/show_module')->with('success','Modulo atualizado com êxito');
 		}
 
 
 
 		public function delete_module(Request $request, $id){
-				$delete_student = Student::find($id);
-				$delete_student->delete();
-		        return redirect('/show_student')->with('deleted','Curso elminado com êxito'.":".$delete_student->name);
+				
+				$delete_module = Module::find($id);
+				$delete_module->delete();
+		        return redirect('/show_module')->with('deleted','Modulo elminado com êxito'.":".$delete_module->name);
 
 
 
