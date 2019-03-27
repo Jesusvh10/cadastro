@@ -35,6 +35,7 @@
                     <a href="{{ URL::to('/show_teacher')}}" class="btn btn-primary float-right ">Teachers</a>
                     <a href="{{ URL::to('/show_student')}}" class="btn btn-primary float-right ">Students</a>
                      <a href="{{ URL::to('/show_module')}}" class="btn btn-primary float-right ">Modules</a>
+                     <a href="{{ URL::to('/show_note')}}" class="btn btn-primary float-right ">Notas</a>
 
 
                   

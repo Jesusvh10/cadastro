@@ -70,34 +70,34 @@ class Note_controller extends Controller
 
 		public function edit_note(Request $request, $id){
 				// para editar los datos sin guardar aun
-				$edit_student = Student::find($id);
+				 $show_student = Student::all();
+			 	 $show_module = Module::all();
 
-				$show_course = Course::all();
+				$find_note = Note::find($id);
 
-				return view('edit_student',compact('edit_student','show_course'));
+				return view('edit_note',compact('show_student','show_module','find_note'));
 
 		}
 
 
-		public function update_student(Request $request, $id){
+		public function update_note(Request $request, $id){
 				
-				$update_student = Student::find($id);
-				$update_student->name = $request->get('name');
-				$update_student->surname = $request->get('surname');
-				$update_student->age = $request->get('age');
-				$update_student->profession = $request->get('profession');
-				$update_student->course_id = $request->get('category');
-				$update_student->save();
+				$update_note = Note::find($id);
+				$update_note->note = $request->get('note');
+				$update_note->student_id = $request->get('categoryst');
+				$update_note->module_id = $request->get('categorymd');
+				
+				$update_note->save();
 
-		         return redirect('/show_student')->with('success','Usuario atualizado com êxito');
+		         return redirect('/show_note')->with('success','Usuario atualizado com êxito');
 		}
 
 
 
-		public function delete_student(Request $request, $id){
-				$delete_student = Student::find($id);
-				$delete_student->delete();
-		        return redirect('/show_student')->with('deleted','Curso elminado com êxito'.":".$delete_student->name);
+		public function delete_note(Request $request, $id){
+				$delete_note = Note::find($id);
+				$delete_note->delete();
+		        return redirect('/show_note')->with('deleted','Curso elminado com êxito'.":".$delete_note->name);
 
 
 

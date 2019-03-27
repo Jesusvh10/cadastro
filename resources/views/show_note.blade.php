@@ -43,9 +43,9 @@
                      
              
 
-              <td><a href="{{ URL::to('/edit_module',$item->id)}}" class="btn btn-primary">Edit</a></td>         
+              <td><a href="{{ URL::to('/edit_note',$item->id)}}" class="btn btn-primary">Edit</a></td>         
             <td>
-              <form action="{{ URL::to('/delete_module',$item->id)}}"method="post">
+              <form action="{{ URL::to('/delete_note',$item->id)}}"method="post">
                  @csrf
                  @method('DELETE')
               <button class="btn btn-danger" type="submit">Delete</button>
