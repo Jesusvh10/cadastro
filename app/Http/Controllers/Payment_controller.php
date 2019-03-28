@@ -4,16 +4,11 @@ namespace App\Http\Controllers\API\v1\Users;
 use App\Http\Controllers\Controller;
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Note;
-use App\Module;
+use App\Payment;
 use App\Student;
-use App\Http\Requests\Validation_Student;
 use App\Http\Requests\Validation_Note;
 
-use DB;
-
-
-class Note_controller extends Controller
+class Payment_controller extends Controller
 {
     public function __construct(){
 
@@ -25,7 +20,8 @@ class Note_controller extends Controller
 	private $path ='user';
 
 
-	public function show_note(){
+
+	public function show_payment(){
 			    
 					
 			$query = "notes.id, students.name as namet, modules.name, notes.note ";
@@ -45,17 +41,23 @@ class Note_controller extends Controller
 		}
 
 
-		public function register_note(){
+		public function register_payment(){
 				
 				 $show_student = Student::all();
-			 	 $show_module = Module::all();
+
+				 function showDate(Request $request)
+    {
+ 
+       dd($request->date);
+    }
+			 	 
 			 	
-			 	return view('register_note',compact('show_student','show_module'));
+			 	return view('register_payment',compact('show_student'));
 			 	
 		}
 
 
-		public function saving_note(Validation_Note $request){
+		public function saving_payment(Validation_Note $request){
 
 				$saving_note = new Note;
 				$saving_note->student_id = $request->get('categoryst');
@@ -70,7 +72,7 @@ class Note_controller extends Controller
 
 
 
-		public function edit_note(Request $request, $id){
+		public function edit_payment(Request $request, $id){
 				// para editar los datos sin guardar aun
 				 $show_student = Student::all();
 			 	 $show_module = Module::all();
@@ -82,7 +84,7 @@ class Note_controller extends Controller
 		}
 
 
-		public function update_note(Request $request, $id){
+		public function update_payment(Request $request, $id){
 				
 				$update_note = Note::find($id);
 				$update_note->note = $request->get('note');
@@ -96,7 +98,7 @@ class Note_controller extends Controller
 
 
 
-		public function delete_note(Request $request, $id){
+		public function delete_payment(Request $request, $id){
 				$delete_note = Note::find($id);
 				$delete_note->delete();
 		        return redirect('/show_note')->with('deleted','Curso elminado com êxito'.":".$delete_note->name);
@@ -107,34 +109,4 @@ class Note_controller extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}// End of the class
+} //End of the class 

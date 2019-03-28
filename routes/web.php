@@ -96,3 +96,18 @@ Route::put('update_note/{id}','Note_controller@update_note')->name('update_note'
 
 Route::delete('delete_note/{id}','Note_controller@delete_note')->name('delete_note');
 
+// Routes for payments
+
+
+Route::get('show_payment','Payment_controller@show_payment')->name('show_payment');
+
+Route::get('register_payment','Payment_controller@register_payment')->name('register_payment');
+
+Route::post('saving_payment','Payment_controller@saving_payment')->name('saving_payment');
+
+Route::get('edit_payment/{id}','Payment_controller@edit_payment')->name('edit_payment');
+
+Route::put('update_payment/{id}','Payment_controller@update_payment')->name('update_payment');
+
+Route::delete('delete_payment/{id}','Payment_controller@delete_payment')->name('delete_payment');
+
