@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Payment;
 use App\Student;
 use App\Http\Requests\Validation_Note;
+use DB;
 
 class Payment_controller extends Controller
 {
@@ -24,17 +25,16 @@ class Payment_controller extends Controller
 	public function show_payment(){
 			    
 					
-			$query = "notes.id, students.name as namet, modules.name, notes.note ";
+			$query = "payments.id, payments.date, students.name, payments.payment";
 
-			 $note = DB::table('notes')
+			 $payment = DB::table('payments')
 			->select(DB::raw($query))
-			->leftJoin('modules', 'modules.id', '=', 'notes.module_id')
-			->leftJoin('students','students.id', '=', 'notes.student_id')
-			->whereNull('notes.deleted_at')
+			->leftJoin('students','students.id', '=', 'payments.student_id')
+			->whereNull('payments.deleted_at')
 			->paginate(5);
 
 
-			return view('show_note',compact('note'));
+			return view('show_payment',compact('payment'));
 				
 				
 				
@@ -45,27 +45,26 @@ class Payment_controller extends Controller
 				
 				 $show_student = Student::all();
 
-				 function showDate(Request $request)
-    {
- 
-       dd($request->date);
-    }
-			 	 
-			 	
+
+
+		 	 			 	
 			 	return view('register_payment',compact('show_student'));
 			 	
 		}
 
 
-		public function saving_payment(Validation_Note $request){
+		public function saving_payment(Request $request){
+				
+			   $date = implode('-', array_reverse(explode('/', $request->get('date'))));
+			   			    
+			    $saving_payment = new Payment;
+				$saving_payment->date = $date;
+				$saving_payment->student_id = $request->get('categoryst');
+				$saving_payment->payment = $request->get('payment');
+				$saving_payment->save();
 
-				$saving_note = new Note;
-				$saving_note->student_id = $request->get('categoryst');
-				$saving_note->module_id = $request->get('categorymd');
-				$saving_note->note = $request->get('note');
-				$saving_note->save();
 
-				return redirect('show_note')->with('success','Nota Cadastrado com êxito');
+				return redirect('show_payment')->with('success','Pagamento cadastrado com êxito');
 
 
 		}
@@ -75,33 +74,34 @@ class Payment_controller extends Controller
 		public function edit_payment(Request $request, $id){
 				// para editar los datos sin guardar aun
 				 $show_student = Student::all();
-			 	 $show_module = Module::all();
+			 	 
+				 $find_payment = Payment::find($id);
 
-				$find_note = Note::find($id);
-
-				return view('edit_note',compact('show_student','show_module','find_note'));
+				 return view('edit_payment',compact('show_student','find_payment'));
 
 		}
 
 
 		public function update_payment(Request $request, $id){
-				
-				$update_note = Note::find($id);
-				$update_note->note = $request->get('note');
-				$update_note->student_id = $request->get('categoryst');
-				$update_note->module_id = $request->get('categorymd');
-				
-				$update_note->save();
 
-		         return redirect('/show_note')->with('success','Usuario atualizado com êxito');
+			$date = implode('-', array_reverse(explode('/', $request->get('date'))));
+				
+				$update_payment = Payment::find($id);
+				$update_payment->date = $date;
+				$update_payment->student_id = $request->get('categoryst');
+				$update_payment->payment = $request->get('payment');
+				
+				$update_payment->save();
+
+		         return redirect('/show_payment')->with('success','Usuario atualizado com êxito');
 		}
 
 
 
 		public function delete_payment(Request $request, $id){
-				$delete_note = Note::find($id);
-				$delete_note->delete();
-		        return redirect('/show_note')->with('deleted','Curso elminado com êxito'.":".$delete_note->name);
+				$delete_payment = Payment::find($id);
+				$delete_payment->delete();
+		        return redirect('/show_payment')->with('deleted','Curso elminado com êxito'.":".$delete_payment->name);
 
 
 

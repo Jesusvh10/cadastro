@@ -10,8 +10,33 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+   
 
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <!-- Latest compiled and minified CSS -->
+    
+    <!-- Optional theme -->
+   
+    <!-- Latest compiled and minified JavaScript -->
+   
+
+    <!-- Jquery --> 
+    
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <!-- Datepicker Files -->
+    <link rel="stylesheet" href="{{asset('datepicker/css/bootstrap-datepicker3.css')}}">
+    <link rel="stylesheet" href="{{asset('datepicker/css/bootstrap-datepicker.standalone.css')}}">
+    <script src="{{asset('datepicker/js/bootstrap-datepicker.js')}}"></script>
+    <!-- Languaje -->
+    <script src="{{asset('datepicker/locales/bootstrap-datepicker.es.min.js')}}"></script>
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
