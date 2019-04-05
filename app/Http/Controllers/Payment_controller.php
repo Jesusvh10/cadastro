@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Payment;
 use App\Student;
-use App\Http\Requests\Validation_Note;
+use App\Http\Requests\Validation_payment;
 use DB;
 
 class Payment_controller extends Controller
@@ -25,13 +25,20 @@ class Payment_controller extends Controller
 	public function show_payment(){
 			    
 					
-			$query = "payments.id, payments.date, students.name, payments.payment";
+			/*$query = "payments.id, payments.date, students.name, payments.payment";
 
 			 $payment = DB::table('payments')
 			->select(DB::raw($query))
 			->leftJoin('students','students.id', '=', 'payments.student_id')
 			->whereNull('payments.deleted_at')
-			->paginate(5);
+			->paginate(5);*/
+
+
+
+			$payment = Payment::select('payments.id', 'payments.date', 'students.name', 'payments.payment')->leftJoin('students','students.id', '=', 'payments.student_id')
+			->whereNull('payments.deleted_at')
+			->paginate(15);
+
 
 
 			return view('show_payment',compact('payment'));
@@ -53,7 +60,7 @@ class Payment_controller extends Controller
 		}
 
 
-		public function saving_payment(Request $request){
+		public function saving_payment(Validation_payment $request){
 				
 			   $date = implode('-', array_reverse(explode('/', $request->get('date'))));
 			   			    

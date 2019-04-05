@@ -7,6 +7,7 @@
 
     
 <div class="container">
+  @include('layouts.erro')
     <div class="content">
  
         <div class="panel panel-default">
@@ -50,7 +51,8 @@
 $('#sandbox-container').datepicker({
     
      format: 'dd/mm/yyyy',
-     language: 'pt-BR'
+     language: 'pt-BR',
+      
     
   });
 
