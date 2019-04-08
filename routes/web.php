@@ -111,3 +111,21 @@ Route::put('update_payment/{id}','Payment_controller@update_payment')->name('upd
 
 Route::delete('delete_payment/{id}','Payment_controller@delete_payment')->name('delete_payment');
 
+
+
+// Routes for absences
+
+
+Route::get('show_absence','Absences_controller@show_absence')->name('show_absence');
+
+Route::get('register_absence','Absences_controller@register_absence')->name('register_absence');
+
+Route::post('saving_absence','Absences_controller@saving_absence')->name('saving_absence');
+
+Route::get('edit_absence/{id}','Absences_controller@edit_absence')->name('edit_absence');
+
+Route::put('update_absence/{id}','Absences_controller@update_absence')->name('update_absence');
+
+Route::delete('delete_absence/{id}','Absences_controller@delete_absence')->name('delete_absence');
+
+

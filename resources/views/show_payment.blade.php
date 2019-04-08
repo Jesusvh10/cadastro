@@ -13,7 +13,7 @@
           {{ session('deleted')}}
       </div>
   @endif
-<h4>Cadastrados de notas</h4>
+<h4>Cadastrados de pagamentos</h4>
  
 
 
@@ -40,31 +40,32 @@
               <td>
                 <?php
                   $aux = explode("/", $item->date);
+                  
 
                   if($aux[0] === '01'){
-                    $month = 'enero';
+                    $month = 'Janeiro';
                   }else if($aux[0] === '02'){
-                    $month = 'Febrero';
+                    $month = 'Fevereiro';
                   }else if($aux[0] === '03'){
-                    $month = 'marzo';
+                    $month = 'Março';
                   }else if($aux[0] === '04'){
                     $month = 'Abril';
                   }else if($aux[0] === '05'){
-                    $month = 'Mayo';
+                    $month = 'Maio';
                   }else if($aux[0] === '06'){
-                    $month = 'Junio';
+                    $month = 'Junho';
                   }else if($aux[0] === '07'){
-                    $month = 'Julio';
+                    $month = 'Julho';
                   }else if($aux[0] === '08'){
                     $month = 'Agosto';
                   }else if($aux[0] === '09'){
-                    $month = 'Septiembre';
+                    $month = 'Setembro';
                   }else if($aux[0] === '10'){
-                    $month = 'Octubre';
+                    $month = 'Outubro';
                   }else if($aux[0] === '11'){
-                    $month = 'Novienbre';
+                    $month = 'Novembro';
                   }else if($aux[0] === '12'){
-                    $month = 'Diciembre';
+                    $month = 'Dezembro';
                   }
 
                   echo $month.'-'.$aux[1];
