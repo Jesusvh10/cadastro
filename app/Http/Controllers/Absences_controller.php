@@ -25,24 +25,19 @@ class Absences_controller extends Controller
 
 	public function show_absence(){
 			    
-					
-			/*$query = "payments.id, payments.date, students.name, payments.payment";
-
-			 $payment = DB::table('payments')
-			->select(DB::raw($query))
-			->leftJoin('students','students.id', '=', 'payments.student_id')
-			->whereNull('payments.deleted_at')
-			->paginate(5);*/
-
-
-
-			$payment = Payment::select('payments.id', 'payments.date', 'students.name', 'payments.payment')->leftJoin('students','students.id', '=', 'payments.student_id')
-			->whereNull('payments.deleted_at')
+									
+			 $absence = Absence::select('absences.id','students.name as al','modules.name','absences.tipe','absences.date')
+			->leftJoin('students','students.id', '=', 'absences.student_id')
+			->leftJoin('modules','modules.id', '=', 'absences.module_id')
+			->whereNull('absences.deleted_at')
 			->paginate(15);
 
 
 
-			return view('show_payment',compact('payment'));
+			
+
+
+			return view('show_absence',compact('absence'));
 				
 				
 				
@@ -74,7 +69,7 @@ class Absences_controller extends Controller
 				$saving_absence->save();
 
 
-				return redirect('register_absence')->with('success','Pagamento cadastrado com êxito');
+				return redirect('show_absence')->with('success','Estudante atualizado com êxito');
 
 
 		}
@@ -84,10 +79,11 @@ class Absences_controller extends Controller
 		public function edit_absence(Request $request, $id){
 				// para editar los datos sin guardar aun
 				 $show_student = Student::all();
+				 $show_module = Module::all();
 			 	 
-				 $find_payment = Payment::find($id);
+				 $find_absence = Absence::find($id);
 
-				 return view('edit_payment',compact('show_student','find_payment'));
+				 return view('edit_absence',compact('show_student','show_module','find_absence'));
 
 		}
 
@@ -95,23 +91,25 @@ class Absences_controller extends Controller
 		public function update_absence(Request $request, $id){
 
 			$date = implode('-', array_reverse(explode('/', $request->get('date'))));
-				
-				$update_payment = Payment::find($id);
-				$update_payment->date = $date;
-				$update_payment->student_id = $request->get('categoryst');
-				$update_payment->payment = $request->get('payment');
-				
-				$update_payment->save();
+			   			    
+			    $saving_absence = new Absence;
+				$saving_absence->date = $date;
+				$saving_absence->student_id = $request->get('categoryst');
+				$saving_absence->module_id = $request->get('categorymd');
+				$saving_absence->tipe = $request->get('absence');
+				$saving_absence->save();
 
-		         return redirect('/show_payment')->with('success','Usuario atualizado com êxito');
+
+				return redirect('show_absence')->with('success','Estudante atualizado com êxito');
 		}
 
 
 
 		public function delete_absence(Request $request, $id){
-				$delete_payment = Payment::find($id);
-				$delete_payment->delete();
-		        return redirect('/show_payment')->with('deleted','Curso elminado com êxito'.":".$delete_payment->name);
+				$delete_absence = Absence::find($id);
+				
+				$delete_absence->delete();
+		        return redirect('/show_absence')->with('deleted','Estudante elminado com êxito'.":".$delete_absence->name);
 
 
 
