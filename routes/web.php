@@ -129,3 +129,6 @@ Route::put('update_absence/{id}','Absences_controller@update_absence')->name('up
 Route::delete('delete_absence/{id}','Absences_controller@delete_absence')->name('delete_absence');
 
 
+//Routes for reports
+
+Route::get('report_payment','Reportpayments_controller@show_report_payments')->name('show_report_payment');
