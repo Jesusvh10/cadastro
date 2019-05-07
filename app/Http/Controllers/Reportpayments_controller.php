@@ -21,18 +21,24 @@ class Reportpayments_controller extends Controller
 
 	private $path ='user';
 
-	public function show_report_payments(){
+	public function search(Request $request){
+
+		$search = $request->get('search1');
 
 		 $payment = Payment::select('payments.id','payments.date','students.name','payments.payment')
 		->leftJoin('students','students.id','=','payments.student_id')
+		->where('students.name', 'like', '%'.$search.'%')
+		->orwhere('payments.date', 'like', '%'.$search.'%')
 		->whereNull('payments.deleted_at')
 		->paginate(15);
 
 		return view('report_payment',compact('payment'));
 
 
-
 	}
+
+
+
 
 
 

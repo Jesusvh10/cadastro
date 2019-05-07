@@ -13,8 +13,23 @@
           {{ session('deleted')}}
       </div>
   @endif
-<h4>Cadastrados de pagamentos</h4>
- 
+  <br>
+<h4>Reportes de pagamentos</h4>
+
+  
+  <form action="/report_payment" method="get">
+    
+    <div class="input-group">
+     
+      <input type="search" name="search1" class ="form-control">
+      <span class="input-group-prepend" >
+        <button type="submit"class="btn btn-primary">Search</button>
+      </span> 
+
+      
+    </div>
+  </form>
+
 
 
 <table class="table">
@@ -25,10 +40,7 @@
           <th scope="col">Data</th>
           <th scope="col">Pagamento</th>
          
-          <th>Editar</th> 
-          <th>Delete</th>
-          <th> <a href="{{ URL::to('/register_payment')}}" class="btn btn-primary float-right ">Cadastrar</a>
-          </th>
+          
         </tr>
       </thead>
         <tbody>
@@ -75,15 +87,7 @@
                           
                      
              
-
-              <td><a href="{{ URL::to('/edit_payment',$item->id)}}" class="btn btn-primary">Edit</a></td>         
-            <td>
-              <form action="{{ URL::to('/delete_payment',$item->id)}}"method="post">
-                 @csrf
-                 @method('DELETE')
-              <button class="btn btn-danger" type="submit">Delete</button>
-              </form>
-             </td>
+       
 
           </tr>
           @endforeach()

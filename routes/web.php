@@ -131,4 +131,5 @@ Route::delete('delete_absence/{id}','Absences_controller@delete_absence')->name(
 
 //Routes for reports
 
-Route::get('report_payment','Reportpayments_controller@show_report_payments')->name('show_report_payment');
+Route::get('/report_payment','Reportpayments_controller@search')->name('search');
+
