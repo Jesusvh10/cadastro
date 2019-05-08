@@ -9,6 +9,7 @@ use App\Payment;
 use App\Student;
 use App\Http\Requests\Validation_payment;
 use DB;
+use PDF;
 
 class Reportpayments_controller extends Controller
 {
@@ -36,6 +37,29 @@ class Reportpayments_controller extends Controller
 
 
 	}
+
+	public function generatepdf(Request $request){
+
+		//Including some detail
+		//$details = ['title' => 'test'];
+
+		//loading the view to download as pdf
+		 $search = $request->get('search1');
+		 $payment = Payment::select('payments.id','payments.date','students.name','payments.payment')
+		->leftJoin('students','students.id','=','payments.student_id')
+		->where('students.name', 'like', '%'.$search.'%')
+		->orwhere('payments.date', 'like', '%'.$search.'%')
+		->whereNull('payments.deleted_at')
+		->get();
+		//---------------------
+
+		$pdf = PDF::loadview('pdf',compact('payment'));
+		return $pdf->download('My portable Testando.pdf');
+
+	}
+
+
+
 
 
 

@@ -1,54 +1,42 @@
-@extends('layouts.app')
 
+<!DOCTYPE html>
+<html lang="{{ config('app.locale') }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Laravel</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-@section('content')
-@if (session('success'))
-      <div class="alert alert-success">
-          {{ session('success') }}
-      </div>
-  @endif
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-  @if (session('deleted'))
-      <div class="alert alert-danger">
-          {{ session('deleted')}}
-      </div>
-  @endif
-  <br>
-<h4>Reportes de pagamentos</h4>
-  
-    <a href="{{URL::to('/generatepdf')}}" class="btn btn-primary float-right">PDF</a>
-    <br>br
-  
-  <form action="/report_payment" method="get">
-    
-    <div class="input-group">
-     
-      <input type="search" name="search1" class ="form-control">
-      <span class="input-group-prepend" >
-        <button type="submit"class="btn btn-primary">Search</button>
-      </span> 
-
-      
-    </div>
-  </form>
-
-
-
-<table class="table">
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+</head>
+<body>
+<<div class="container">
+ 
+  <h3 class="page-header  text-center text-primary  "  >Reportes de Pagamentos</h3>
+  <p class="text-center text-primary" >Aula de Español</p>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
       <thead>
-        <tr>
-          <th scope="col">#id</th>
-          <th scope="col">Nome</th>
-          <th scope="col">Data</th>
-          <th scope="col">Pagamento</th>
-         
-          
-        </tr>
+      <tr class="success"  >
+        <th class="text-center">ID</th>
+        <th class="text-center">Nome</th>
+        <th class="text-center">Data</th>
+        <th class="text-center">Pagamento</th>
+        
+      </tr>
       </thead>
-        <tbody>
+      <tbody>
          
           @foreach($payment as $item)
-           <tr>
+           <tr class="text-center">
               <td>{{$item->id}}</td>
               <td>{{$item->name}}</td>
               <td>
@@ -94,7 +82,11 @@
           </tr>
           @endforeach()
         </tbody>
-  </table>
-    
-    @endsection
-    
+    </table>
+  </div>
+</div>
+<div class="container">
+ 
+</div>
+</body>
+</html>
