@@ -33,7 +33,7 @@ class Reportpayments_controller extends Controller
 		->whereNull('payments.deleted_at')
 		->paginate(15);
 
-		return view('report_payment',compact('payment'));
+		return view('report_payment',compact('payment','search'));
 
 
 	}
@@ -44,7 +44,7 @@ class Reportpayments_controller extends Controller
 		//$details = ['title' => 'test'];
 
 		//loading the view to download as pdf
-		 $search = $request->get('search1');
+		$search = $request->get('search9');
 		 $payment = Payment::select('payments.id','payments.date','students.name','payments.payment')
 		->leftJoin('students','students.id','=','payments.student_id')
 		->where('students.name', 'like', '%'.$search.'%')
@@ -54,7 +54,7 @@ class Reportpayments_controller extends Controller
 		//---------------------
 
 		$pdf = PDF::loadview('pdf',compact('payment'));
-		return $pdf->download('My portable Testando.pdf');
+		return $pdf->stream('My portable Testando.pdf');
 
 	}
 

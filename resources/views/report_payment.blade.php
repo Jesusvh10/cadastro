@@ -15,9 +15,23 @@
   @endif
   <br>
 <h4>Reportes de pagamentos</h4>
+
+    <form action="/generatepdf" method="get">
+     
+    
+    <div class="input-group">
+     
+       <input type="search" name="search9" value= "{{ $search }}"/>
+      <span class="input-group-prepend" >
+         <button type="submit"class="btn btn-primary">PDF</button>
+     
+      </span> 
+
+      
+    </div>
+  </form>
   
-    <a href="{{URL::to('/generatepdf')}}" class="btn btn-primary float-right">PDF</a>
-    <br>br
+   
   
   <form action="/report_payment" method="get">
     
