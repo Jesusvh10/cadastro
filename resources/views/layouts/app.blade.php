@@ -29,6 +29,9 @@
     
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript">
+
 
   <!-- Datepicker Files -->
     <link rel="stylesheet" href="{{asset('datepicker/css/bootstrap-datepicker3.css')}}">
@@ -43,6 +46,29 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+.vertical-menu {
+  width: 200px;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+.vertical-menu a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
 </head>
 <body>
     <div id="app">
@@ -57,6 +83,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
@@ -97,12 +124,36 @@
             </div>
         </nav>
 
-        <main class="py-4">
-             <a href="{{ url('/home') }}">Home</a>
-            @yield('content')
+<div class="row">
+  <div class="col-2">
+    <div class="vertical-menu" style="width:175px;">
+        <a href="{{ URL::to('/show_course')}}" class="">Courses</a>
+        <a href="{{ URL::to('/show_teacher')}}" class="">Teachers</a>
+        <a href="{{ URL::to('/show_student')}}" class="">Students</a>
+        <a href="{{ URL::to('/show_module')}}" class="">Modules</a>
+        <a href="{{ URL::to('/show_note')}}" class="">Notas</a>
+        <a href="{{ URL::to('/show_payment')}}" class="">Pagamentos</a>
+        <a href="{{ URL::to('/show_absence')}}" class="">Ausências</a>
+        <a href="{{ URL::to('/report_payment')}}" class="">Reportes</a>
+        
+    </div> 
+  </div>
+  <div class="col">
+      <section class="content">
+         @yield('content')
+        
+      </section>
+  </div>
+</div>
 
-             
-        </main>
+
+
+
+               
+    <footer>
+        asdasdas
+    </footer>
+        
     </div>
 </body>
 </html>
