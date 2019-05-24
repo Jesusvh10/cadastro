@@ -53,7 +53,7 @@
 }
 
 .vertical-menu a {
-  background-color: #eee;
+  background-color:#C8C8C8;
   color: black;
   display: block;
   padding: 12px;
@@ -61,7 +61,7 @@
 }
 
 .vertical-menu a:hover {
-  background-color: #ccc;
+  background-color: #A8B4C6;
 }
 
 .vertical-menu a.active {
@@ -125,19 +125,23 @@
         </nav>
 
 <div class="row">
-  <div class="col-2">
-    <div class="vertical-menu" style="width:175px;">
-        <a href="{{ URL::to('/show_course')}}" class="">Courses</a>
-        <a href="{{ URL::to('/show_teacher')}}" class="">Teachers</a>
-        <a href="{{ URL::to('/show_student')}}" class="">Students</a>
-        <a href="{{ URL::to('/show_module')}}" class="">Modules</a>
-        <a href="{{ URL::to('/show_note')}}" class="">Notas</a>
-        <a href="{{ URL::to('/show_payment')}}" class="">Pagamentos</a>
-        <a href="{{ URL::to('/show_absence')}}" class="">Ausências</a>
-        <a href="{{ URL::to('/report_payment')}}" class="">Reportes</a>
-        
-    </div> 
-  </div>
+  @guest
+  @else
+      <div class="col-2">
+        <div class="vertical-menu" style="width:175px;">
+             <a href="{{ URL::to('/home')}}" class="">Dashboard</a>
+            <a href="{{ URL::to('/show_course')}}" class="">Courses</a>
+            <a href="{{ URL::to('/show_teacher')}}" class="">Teachers</a>
+            <a href="{{ URL::to('/show_student')}}" class="">Students</a>
+            <a href="{{ URL::to('/show_module')}}" class="">Modules</a>
+            <a href="{{ URL::to('/show_note')}}" class="">Notas</a>
+            <a href="{{ URL::to('/show_payment')}}" class="">Pagamentos</a>
+            <a href="{{ URL::to('/show_absence')}}" class="">Ausências</a>
+            <a href="{{ URL::to('/report_payment')}}" class="">Reportes</a>
+            
+        </div> 
+      </div>
+  @endguest
   <div class="col">
       <section class="content">
          @yield('content')
